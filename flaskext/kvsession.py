@@ -116,8 +116,9 @@ class KVSession(CallbackDict, SessionMixin):
 
         CallbackDict.__init__(self, initial, _on_update)
 
-        if not initial:
-            self.modified = False
+        # change this to False by default because we don't want to send set-cookie with every request since
+        # it mucks with edge caches
+        self.modified = False
 
     def destroy(self):
         """Destroys a session completely, by deleting all keys and removing it
