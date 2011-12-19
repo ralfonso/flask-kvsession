@@ -120,10 +120,6 @@ class KVSession(CallbackDict, SessionMixin):
         # it mucks with edge caches
         self.modified = False
 
-        # this allows us to destroy even uninitialized sessions quietly
-        # without error.
-        self.sid_s = None
-
     def destroy(self):
         """Destroys a session completely, by deleting all keys and removing it
         from the internal store immediately.
