@@ -184,6 +184,7 @@ class KVSessionInterface(SessionInterface):
                         app.config['PERMANENT_SESSION_LIFETIME']):
                         # instead of returning a NullSession, give the user a new one
                         s = KVSession()
+                        s.permanent = True
                         s.new = True
                         s.store = self.store
                         return s
@@ -199,9 +200,11 @@ class KVSessionInterface(SessionInterface):
                     s = KVSession()  # silently swallow errors, instead of
                                      # of returning a NullSession
                     s.new = True
+                    s.permanent = True
             else:
                 s = KVSession()  # create an empty session
                 s.new = True
+                s.permanent = True
 
             s.store = self.store
             return s
